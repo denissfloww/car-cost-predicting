@@ -1,0 +1,52 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node ./build/server.js",
+    "build": "tsc",
+    "dev": "cross-env NODE_ENV=test ts-node-dev --respawn ./src/index.ts",
+    "drop db": "npx typeorm schema:drop",
+    "migrate": "npx typeorm migration:run",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "lint": "eslint --ext .ts ."
+  },
+  "author": "denissfloww",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/cors": "^2.8.9",
+    "@types/express": "^4.17.9",
+    "@types/http-errors": "^1.8.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^14.17.7",
+    "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.16.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.3.5",
+    "uuid": "^8.3.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "http-errors": "^1.7.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.29",
+    "typeorm-model-generator": "^0.4.5"
+  }
+}
