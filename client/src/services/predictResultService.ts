@@ -7,6 +7,11 @@ export const getPredict = async (values: InputValues) => {
     return response.data;
 };
 
+export const getQueries = async () => {
+    const response = await axios.get(`${BASE_URL}/api/queries`)
+    return response.data
+}
+
 const getMpgFromLpk = async (lpk: number) => {
     const kmpm = 0.000621371;
     const lpg = 0.264172;

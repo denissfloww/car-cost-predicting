@@ -1,20 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../store';
-import { IPredictResponse } from './types';
-import { getPredict } from '../../services/predictResultService';
-import {InputValues} from "../../pages/MainPage";
+import { IPredictResponse, IQuery } from './types';
+import {getPredict, getQueries} from '../../services/predictResultService';
+import { InputValues } from '../../pages/MainPage';
 
 interface InitialState {
     result: IPredictResponse;
-    loading: boolean
+    loading: boolean;
+    queries: IQuery[];
 }
 
 const initialState: InitialState = {
     result: {
         price: '0',
         img: '',
+        car: '',
     },
-    loading:false
+    queries:[],
+    loading: false,
 };
 
 const predictResultSlice = createSlice({
@@ -28,15 +31,18 @@ const predictResultSlice = createSlice({
             state.result = action.payload;
             state.loading = false;
         },
+        setQueries: (state, action: PayloadAction<IQuery[]>)=> {
+            state.queries = action.payload;
+        }
     },
 });
 
-export const { setResult, setLoading } = predictResultSlice.actions;
+export const { setResult, setLoading, setQueries } = predictResultSlice.actions;
 
 export const fetchPredict = (values: InputValues): AppThunk => {
     return async dispatch => {
         try {
-            dispatch(setLoading())
+            dispatch(setLoading());
             const predictResponse: IPredictResponse = await getPredict(values);
             dispatch(setResult(predictResponse));
         } catch (e) {
@@ -44,6 +50,17 @@ export const fetchPredict = (values: InputValues): AppThunk => {
         }
     };
 };
+
+export const fetchQueries = (): AppThunk => {
+    return async dispatch => {
+        try {
+            const queries: IQuery[] = await getQueries();
+            dispatch(setQueries(queries))
+        }catch (e) {
+            console.log(e)
+        }
+    }
+}
 
 export const selectPredictState = (state: RootState) => state.predict;
 
