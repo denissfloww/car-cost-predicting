@@ -1,10 +1,12 @@
 import { Action, configureStore } from '@reduxjs/toolkit';
 import { ThunkAction } from 'redux-thunk';
 import carReducer from './slices/carSlice';
+import predictReducer from './slices/predictResultSlice';
 
 const store = configureStore({
     reducer: {
-        car: carReducer
+        car: carReducer,
+        predict: predictReducer,
     },
 });
 

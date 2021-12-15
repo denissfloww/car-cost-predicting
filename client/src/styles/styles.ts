@@ -41,7 +41,7 @@ export const useResultPageStyles = makeStyles(
         },
         testBorder:{
             border:'2px solid black'
-        }
+        },
     }
 )
 

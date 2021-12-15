@@ -12,7 +12,7 @@ const Navbar = () => {
                     <Toolbar variant='dense'>
                         <Typography component='p' style={{ flexGrow: 1 }}>
                             <Button color='inherit' className={classes.menuButton} to='/' component={RouterLink}>
-                                project
+                                Предсказать
                             </Button>
                         </Typography>
                         <Button color='inherit' className={classes.menuButton} to='/history' component={RouterLink}>
