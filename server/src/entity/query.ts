@@ -6,8 +6,12 @@ export class query {
   @PrimaryGeneratedColumn({ type: "integer", name: "id" })
   id: number;
 
-  @Column("date", { name: "date", nullable: true, default: () => "now()" })
-  date: string | null;
+  @Column("timestamp without time zone", {
+    name: "date",
+    nullable: true,
+    default: () => "now()",
+  })
+  date: Date | null;
 
   @Column("character varying", { name: "brand", length: 8 })
   brand: string;

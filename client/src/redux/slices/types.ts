@@ -17,3 +17,13 @@ export interface IQuery {
     img: string,
     price: string,
 }
+
+export interface IQueryResponse {
+    count: number,
+    queries: IQuery[]
+}
+
+export interface IBrandAveragePrice{
+    brand: string,
+    price: number
+}

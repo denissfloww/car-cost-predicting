@@ -9,7 +9,8 @@
     "drop db": "npx typeorm schema:drop",
     "migrate": "npx typeorm migration:run",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
-    "lint": "eslint --ext .ts ."
+    "lint": "eslint --ext .ts .",
+    "generate-models": "npx typeorm-model-generator -h localhost -d price-predict -p 5432  -u postgres -x 1 -e postgres -o . -s public"
   },
   "author": "denissfloww",
   "license": "ISC",

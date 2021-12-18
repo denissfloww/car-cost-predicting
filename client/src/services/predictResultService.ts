@@ -7,8 +7,18 @@ export const getPredict = async (values: InputValues) => {
     return response.data;
 };
 
-export const getQueries = async () => {
+export const getQueriesPerDay = async () => {
     const response = await axios.get(`${BASE_URL}/api/queries`)
+    return response.data
+}
+
+export const getAllQueriesCount = async () => {
+    const response = await axios.get(`${BASE_URL}/api/queries/all/count`)
+    return response.data.count
+}
+
+export const getStatisticByBrandPerDay = async () => {
+    const response = await axios.get(`${BASE_URL}/api/queries/statistics/average/brand`)
     return response.data
 }
 

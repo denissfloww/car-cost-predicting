@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
 import { ImagesResult } from './types';
-import { getRepository } from 'typeorm';
+import { Between, getRepository } from 'typeorm';
 import { query } from '../entity/query';
 
 export const getPredictResult = async (req: Request, res: Response) => {
@@ -101,16 +101,52 @@ export const getPredictResult = async (req: Request, res: Response) => {
     }
 };
 
-export const getHistory = async (req: Request, res: Response) => {
+export const getHistoryPerDay = async (req: Request, res: Response) => {
     try {
-        const querties = await getRepository(query).find();
-        return res.status(200).send(querties)
+        const startDate = new Date();
+        const endDate = new Date();
+        endDate.setDate(startDate.getDate() - 1);
 
-    }catch (e) {
-        console.log(e)
+        const [queries, count] = await getRepository(query).findAndCount({
+            where: {
+                date: Between(endDate, startDate),
+            },
+        });
+
+        return res.status(200).send({ count, queries });
+    } catch (e) {
+        console.log(e);
         return res.status(500).send(e);
     }
-}
+};
+
+export const getQueriesCountForAllTime = async (req: Request, res: Response) => {
+    try {
+        const [queries, count] = await getRepository(query).findAndCount();
+        console.log(count);
+
+        return res.status(200).send({ count });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send(e);
+    }
+};
+
+export const getAverageBrandPricePerDay = async (req: Request, res: Response) => {
+    try {
+        const startDate = new Date();
+        const endDate = new Date();
+        endDate.setDate(startDate.getDate() - 1);
+
+        const brandAvgPrice = await getRepository(query)
+            .query(`select round(avg(q.price)) as price , q.brand from queries q group by q.brand`)
+
+        return res.status(200).send(brandAvgPrice);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send(e);
+    }
+};
 
 const getImage = async (str: string) => {
     const query = `${process.env.GOOGLE_SEARCH_API_URL}/search.json?q=${str}&tbm=isch&ijn=0&api_key=184bf11e474db990bbf005a558aed292d07997ee547d30bcee7094623ab95d25`;
