@@ -1,6 +1,6 @@
-import { Router } from "express";
-import CarRouter from "./car-router";
-import PredictRouter from "./predict-router";
+import { Router } from 'express';
+import CarRouter from './car-router';
+import PredictRouter from './predict-router';
 
 const router = Router();
 router.use(CarRouter);

@@ -12,7 +12,6 @@ const App = () => {
         <Router>
             <Fragment>
                 <div className={classes.root}>
-
                     <Navbar />
                     <Routers />
                 </div>

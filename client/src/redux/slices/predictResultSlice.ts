@@ -23,7 +23,7 @@ const initialState: InitialState = {
     loading: false,
     countPerDay: 0,
     countAll: 0,
-    brandAvgPrice: []
+    brandAvgPrice: [],
 };
 
 const predictResultSlice = createSlice({

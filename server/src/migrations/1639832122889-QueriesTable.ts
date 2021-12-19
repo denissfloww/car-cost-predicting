@@ -31,6 +31,6 @@ INSERT INTO public.queries (id, date, brand, model, year, transmission, mileage,
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP TABLE "queries"`)
+        await queryRunner.query(`DROP TABLE "queries"`);
     }
 }

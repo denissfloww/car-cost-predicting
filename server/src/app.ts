@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import morgan from 'morgan'
+import morgan from 'morgan';
 import 'express-async-errors';
-import BaseRouter from './routes/index'
+import BaseRouter from './routes/index';
 
 const app = express();
 

@@ -8,7 +8,7 @@ export const getPredictResult = async (req: Request, res: Response) => {
     try {
         const { brand, model, year, engineType, driveType, mileage, tax, mpg, enginesize } = req.query;
         //   не удалять
-        //   const image = await getImage(`${brand}%20${model}%20${year}`);
+        const image = await getImage(`${brand}%20${model}%20${year}`);
 
         const data = {
             Inputs: {
@@ -75,7 +75,7 @@ export const getPredictResult = async (req: Request, res: Response) => {
 
         const result = {
             price: price,
-            img: '', // image,
+            img: image, // image,
             car: `${brand} ${model}, год: ${year}, тип двигателя: ${engineType}, трасмиссия: ${driveType}, объем двигателя: ${enginesize}, пробег: ${mileage}`,
         };
 
@@ -138,8 +138,9 @@ export const getAverageBrandPricePerDay = async (req: Request, res: Response) =>
         const endDate = new Date();
         endDate.setDate(startDate.getDate() - 1);
 
-        const brandAvgPrice = await getRepository(query)
-            .query(`select round(avg(q.price)) as price , q.brand from queries q group by q.brand`)
+        const brandAvgPrice = await getRepository(query).query(
+            `select round(avg(q.price)) as price , q.brand from queries q group by q.brand`,
+        );
 
         return res.status(200).send(brandAvgPrice);
     } catch (e) {

@@ -10,6 +10,7 @@
     "migrate": "npx typeorm migration:run",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
     "lint": "eslint --ext .ts .",
+    "prettier": "prettier --config .prettierrc --write ./**/*.{js,ts,jsx,tsx}",
     "generate-models": "npx typeorm-model-generator -h localhost -d price-predict -p 5432  -u postgres -x 1 -e postgres -o . -s public"
   },
   "author": "denissfloww",

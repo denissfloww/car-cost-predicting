@@ -55,7 +55,7 @@ const QueryHistoryPage = () => {
                             >
                                 <CartesianGrid strokeDasharray='5 5' />
                                 <XAxis dataKey='brand' />
-                                <YAxis type="number" domain={[0, 100000]}/>
+                                <YAxis type='number' domain={[0, 100000]} />
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey='price' name={'Средняя стоимость'} fill='#8884d8' />

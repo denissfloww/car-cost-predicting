@@ -1,7 +1,6 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CarsTable1639831105185 implements MigrationInterface {
-
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
             create table cars
@@ -4987,7 +4986,6 @@ INSERT INTO public.cars (carid, brand, model, year, transmission, mileage, fuelt
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP TABLE "cars"`)
+        await queryRunner.query(`DROP TABLE "cars"`);
     }
-
 }
