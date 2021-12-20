@@ -7,9 +7,9 @@ const Navbar = () => {
 
     return (
         <div className={classes.root}>
-            <AppBar elevation={1} position='static' color='transparent' className={classes.appBar}>
+            <AppBar elevation={1} position='static' color='inherit' className={classes.appBar}>
                 <Container>
-                    <Toolbar variant='dense'>
+                    <Toolbar>
                         <Typography component='p' style={{ flexGrow: 1 }}>
                             <Button color='inherit' className={classes.menuButton} to='/' component={RouterLink}>
                                 Предсказать
