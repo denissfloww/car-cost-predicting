@@ -30,7 +30,7 @@ const ResultPage = () => {
                             <Grid item container justifyContent='center' style={{ marginTop: '10px' }}>
                                 <Grid item md={6}>
                                     <Typography variant='h6' style={{ textAlign: 'center' }}>
-                                        Предполагаемая цена: <b>{result.price} $</b>
+                                        Предполагаемая цена: <b>{Math.round(Number(result.price))} $</b>
                                     </Typography>
                                 </Grid>
                             </Grid>
@@ -38,7 +38,8 @@ const ResultPage = () => {
                                 {/*<img src={result.img} height={400} alt='' />*/}
                                 <img
                                     src={
-                                        'https://serpapi.com/searches/61ba142029d17788d6b2a009/images/15c818b2fd970129b52dc83e2c65691088306a3c14cd79cbba31cdb9ae2ee5b3.jpeg'
+                                        result.img
+                                        //'https://serpapi.com/searches/61ba142029d17788d6b2a009/images/15c818b2fd970129b52dc83e2c65691088306a3c14cd79cbba31cdb9ae2ee5b3.jpeg'
                                     }
                                     height={400}
                                     alt=''
