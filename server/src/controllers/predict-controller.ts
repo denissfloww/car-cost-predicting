@@ -8,8 +8,8 @@ export const getPredictResult = async (req: Request, res: Response) => {
     try {
         const { brand, model, year, engineType, driveType, mileage, tax, mpg, enginesize } = req.query;
         //   не удалять
-        //const image = await getImage(`${brand}%20${model}%20${year}`);
-        const image = 'https://serpapi.com/searches/61ba142029d17788d6b2a009/images/15c818b2fd970129b52dc83e2c65691088306a3c14cd79cbba31cdb9ae2ee5b3.jpeg'
+        const image = await getImage(`${brand}%20${model}%20${year}`);
+        //const image = 'https://serpapi.com/searches/61ba142029d17788d6b2a009/images/15c818b2fd970129b52dc83e2c65691088306a3c14cd79cbba31cdb9ae2ee5b3.jpeg'
 
         const data = {
             Inputs: {
@@ -112,6 +112,9 @@ export const getHistoryPerDay = async (req: Request, res: Response) => {
             where: {
                 date: Between(endDate, startDate),
             },
+            order: {
+                date: "DESC",
+            },
         });
 
         return res.status(200).send({ count, queries });
@@ -137,14 +140,15 @@ export const getAverageBrandPricePerDay = async (req: Request, res: Response) =>
         const startDate = new Date();
         const endDate = new Date();
         endDate.setDate(startDate.getDate() - 1);
+        console.log(startDate.toISOString(), endDate)
 
         const brandAvgPrice = await getRepository(query).query(
             `
-                    select round(avg(q.price)) as price , q.brand 
-                    from queries q 
-                    where q.date > '${endDate.toISOString()}' 
-                      and q.date < '${startDate.toISOString()}' 
-                    group by q.brand
+                select round(avg(q.price)) as price , q.brand
+                from queries q
+                where
+                    q.date BETWEEN NOW() - INTERVAL '24 HOURS' AND NOW()
+                group by q.brand;
             `
         );
 
