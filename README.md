@@ -18,7 +18,7 @@ ____
 4. База данных **Postgres**
 
 ## Датасет
-[Ссылка](https://www.kaggle.com/kukuroo3/used-car-price-dataset-competition-format?select=X_train.csv)
+[Ссылка](https://www.kaggle.com/kukuroo3/used-car-price-dataset-competition-format?select=X_train.csv) <br></br>
 **Корреляция пирсона**
 ![корр](https://live.staticflickr.com/65535/51772981829_9283ece525_c.jpg)
 
